@@ -31,6 +31,13 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 5.0.0"
 
+gem 'devise'
+
+gem 'simple_form' 
+
+gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.7'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
