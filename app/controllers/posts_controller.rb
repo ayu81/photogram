@@ -1,21 +1,24 @@
 class PostsController < ApplicationController
-  before_action :authenticate_model!
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order('updated_at DESC')
   end
 
   def show
+    if current_user != @post.user
+      redirect_to posts_path
+    end
   end
 
   def new
-    @post = current_model.posts.build
+    @post = current_user.posts.build
   end
 
-     def create
+  def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
       flash[:success] = "Your post has been created!"
       redirect_to posts_path
@@ -29,7 +32,7 @@ class PostsController < ApplicationController
   def edit
   end
 
-   def update
+  def update
     if @post.update(post_params)
       flash[:success] = "Post updated."
       redirect_to posts_path
@@ -40,6 +43,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+
     @post.destroy
     redirect_to root_path
   end
@@ -48,6 +52,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:image, :caption)
+  end
+
+  def require_same_user
+    if current_user != @post.user
+      flash[:danger] = "Cannot perform this action"
+      redirect_back fallback_location: post_path(@post)
+    end
   end
 
   def set_post

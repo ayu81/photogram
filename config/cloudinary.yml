@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dvswa4a4j
+  api_key: '652371777578327'
+  api_secret: nCq4z9TFfCTb1_exDk2oe0fzOnw
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dvswa4a4j
+  api_key: '652371777578327'
+  api_secret: nCq4z9TFfCTb1_exDk2oe0fzOnw
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dvswa4a4j
+  api_key: '652371777578327'
+  api_secret: nCq4z9TFfCTb1_exDk2oe0fzOnw
+  enhance_image_tag: true
+  static_image_support: false
